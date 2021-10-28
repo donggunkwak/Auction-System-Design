@@ -1,13 +1,15 @@
-Profile
+#Auction-System-Design
+
+##### Profile
 - Make a username to connect with users' wallets
 - Optional Profile Picture
 
-Commenting
+##### Commenting
 - Anyone can comment on auction item pages (pages for each individual auction item)
 - Shows comments time and also the username and profile picture of who commented it
 - User who commented can delete their comment
 
-Creating an auction for your item:
+##### Creating an auction for your item:
 - Add name (max 50 characters)
 - File you are auctioning (like mp4, mp3, png, jpeg, txt, etc.)
 - Optional picture (jpeg, png, gif)
@@ -15,7 +17,7 @@ Creating an auction for your item:
 - Starting price of auction item
 - Time for auction, how long the auction lasts, has to be at least over 1 hour, and less than or equal to a week
 
-Bidding
+##### Bidding
 - Pages for each individual auction item contains the name of auction item, optional picture, current price, current highest bidder, time remaining, and comments
 - Anyone can bid on the item as long as it is higher than the current price
 - After someone bids on an item, the amount of time remaining for the auction gets extended by 1 minute
