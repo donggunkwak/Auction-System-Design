@@ -1,6 +1,7 @@
 
 
 Class user
+	
 	Variables:
 		HashMap <String, String>
 			contains their username and address (not sure if this the best way to implement this. Maybe just two separate Strings)
@@ -15,6 +16,7 @@ Class user
 		
 
 Class Comment
+	
 	Variables:
 		String comment
 		String time
@@ -48,6 +50,24 @@ Class auction
 	void increaseTimeframe ()
 		if there is a new bid, timeframe += 1 minute
 
+Class bid
+	
+	Variables:
+		double timeRemaining
+		String curHighestBidder
+		Double curPrice
+		
+		
+		
+	Method Bid (double price)
+		if the curHighestBidder is the same as a bidder, you cannot use this method
+		
+		if price is larger than previous price then bid goes through and auction class is updated - price in auction class is changed and timeframe is updated
+			timeRemaining + 1 minute
+			curPrice = price
+			
+	Method void ifThereIsATie
+		plays minesweeper
 
 
 
