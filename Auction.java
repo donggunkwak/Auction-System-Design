@@ -1,3 +1,5 @@
+
+import java.util.*; 
 public class Auction extends User{
 	private String auctionFileName; 
 	private ArrayList<User> userNames; // I added this to make my life easier 
@@ -5,12 +7,15 @@ public class Auction extends User{
 	private String proudctDescription; 
 	private double curprice; 
 	private int blocksTillMine; 
+	private String usssser; // the person that creates the auction
+	private String winner; 
 
-	public Auction(String aucFilName, String tumb, String description, double mon, int time, ){
+	public Auction(String aucFilName, String tumb, String description, double mon, int time, Stig user){
 		auctionFileName=aucFilName; 
 		tumbnailFileName=tumb; 
 		productDescription=description; 
 		cuprice=mon;
+		usssser=user; 
 		blockTilMine=time; 
 		userNames=new ArrayList<User> (); 
 		if (blockTillMine<60 || blockTilMine=>1080){
@@ -18,30 +23,24 @@ public class Auction extends User{
 		}
 	}
 
-	public String bid(double price){
-		if(sameUser==true){
-			return ("you can not bid on your own item"); 
-		}
-		else if (price<=curprice){
-			return ("You must bid an amount that is greater than the higest bid")
-		}
-		else{
-			curprice=price; 
-			this.increaseTime(); 
-			return("your bid has been placed"); 
-		}
+	public String getuser(){
+		return (usssser); 
 	}
 
-	public boolean sameUser(){
-		if(this.userName.equals(n)){
+	public void increaseTime(){
+		blockTillMine++; 
+	}
+
+	public boolean expire(){ // has the time of the auction expired 
+		if(blockTilMine==0){
+			winner=userNames.get(userNames.size()-1); 
 			return (true); 
 		}
 		return (false); 
 	}
 
-
-	public void increaseTime(){
-		blockTillMine++; 
-	}
+public String getWinner(){
+	return winner; 
+}
 
 }
