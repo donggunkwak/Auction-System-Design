@@ -35,7 +35,7 @@ public void makeBid(int productNumber, Person bidder, double amount){
 	Product selectProduct=getProduct(productNumber); 
 	if (selectProduct!=null){
 		Bid bid= new Bid(bidder, value); 
-		boolean works=selectProduct.bidFor(bid); 
+		boolean works=selectProduct.replaceHighestBid(bid); 
 		if (works==true){
 			System.out.println("Your bid was successful");
 		} else{

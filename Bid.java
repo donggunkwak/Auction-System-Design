@@ -8,7 +8,7 @@ public Bid(Person per, double amount){
 }
 
 public void makeBid(){
-
+	
 }
 
 public Person getBidder(){
