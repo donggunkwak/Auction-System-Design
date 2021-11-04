@@ -20,7 +20,7 @@ public class Person{
 		return (bidAmount); 
 	}
 
-	public Sting getName(){
+	public String getName(){
 		return name; 
 	}
 
@@ -30,6 +30,10 @@ public class Person{
 
 	public void add(double amount){
 		cash=cash+amount; 
+	}
+
+	public String toString(){
+		return (name+ " "+ bidAmount); 
 	}
 
 } 
