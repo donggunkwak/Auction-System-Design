@@ -5,7 +5,7 @@ public class Person{
 	private double cash; 
 
 
-	public Person(String address, String name, int cash){
+	public Person(String address, String name, double cash){
 		this.name=name; 
 		this.address=address; 
 		this.bidAmount=0; 
@@ -34,6 +34,10 @@ public class Person{
 
 	public String toString(){
 		return (name+ " "+ bidAmount); 
+	}
+
+	public double getCash(){
+		return (cash); 
 	}
 
 } 

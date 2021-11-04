@@ -6,9 +6,12 @@ public class Auction2 {
 private ArrayList<Person> bidders;  
 private int blockTilMine; 
 private Products product; 
+private Person starter; 
 
 public Auction2 (int time, Products p){
 	bidders=new ArrayList<Person> (); 
+	starter= new Person ("fdsfa", "test", 0); 
+	bidders.add(starter); 
 	product=p; 
 	if (time<60 || time>1080){
 		System.out.println("your entered an invalid amount of time an auction can run for. The time will be set to a default of 3 days "); 
@@ -19,7 +22,7 @@ public Auction2 (int time, Products p){
 }
 
 public Person getHighestBidder(){
-	double amount=0; 
+	double amount=-1; 
 	Person store=null; 
 	for (int i=0; i<bidders.size(); i++){
 		double bid= bidders.get(i).getBidAmount(); 
