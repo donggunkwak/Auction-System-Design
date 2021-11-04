@@ -1,56 +1,73 @@
 import java.util.ArrayList; 
+import java.util.Timer;
+import java.util.TimerTask;
 
-public class Auction2{
-private ArrayList<Products> products; 
-private int counter; 
+public class Auction2 {
+private ArrayList<Person> bidders;  
+private int blockTilMine; 
+private Product product; 
 
-public Auction{
-	products=new ArrayList<Product> (); 
-	counter=0;
-}
-
-public void enterProduct(String description, Person name, int time){
-	products.add(new Products(counter, description, name, time)); 
-	counter++; 
-}
-
-public void showProducts(){
-	for (int i=0; i<products.size(); i++){
-		System.out.println(products.get(i)); 
+public Auction (int time, Product p){
+	bidders=new ArrayList<Person> (); 
+	product=p; 
+	if (time<60 || time>1080){
+		System.out.println("your entered an invalid amount of time an auction can run for. The time will be set to a default of 3 days "); 
+		blockTilMine=4320; 
+	}else{
+		blocksTilMine=time; 
 	}
 }
 
-public ArrayList <Products> unsold(){
-	Arraylist<Prodcuts> unsold= new ArrayList<Products> (); 
-	for (i=0; i<products.size(); i++){
-		Bid bid=products.get(i).getHighestBid(); 
-		if (bid==null){
-			unsold.add(products.get(i)); 
+public String getHighestBidder(){
+	double amount=0; 
+	Person store=null; 
+	for (int i=0; i<bidders.size(); i++){
+		double bid= bidders.get(i).getBid().getAmount(); 
+		if (bid>amount){
+			amount=bid; 
+			store=bidders.get(i); 
 		}
 	}
-	return (unsold); 
+	return (store.getName()); 
 }
 
-public void makeBid(int productNumber, Person bidder, double amount){
-	Product selectProduct=getProduct(productNumber); 
-	if (selectProduct!=null){
-		Bid bid= new Bid(bidder, value); 
-		boolean works=selectProduct.replaceHighestBid(bid); 
-		if (works==true){
-			System.out.println("Your bid was successful");
-		} else{
-			System.out.println("Your bid was not sucessful either becuase you bidded on your object or your bid is equal to or less than the highest bid"); 
+public double getHighestAmount(){
+	double amount=0; 
+	for (int i=0; i<bidders.size(); i++){
+		double bid= bidders.get(i).getBid().getAmount(); 
+		if (bid>amount){
+			amount=bid;  
 		}
 	}
+	return (amount); 
 }
 
-public Prodct getProduct(int productNumber){
-	if (productNumber>=0 && productNumber<products.size()){
-		return products.get(productNumber); 
+public boolean placeBid(Person user){
+	double amount=user.getBidAmount(); 
+	if (amount>this.getHighestAmount() && blockTilMine>0 && !user.getName().equals(product.getn()) && !user.getName().equal(this.getHighestBidder)){
+		bidders.add(user); 
+		System.out.println("your bid has succesffuly been placed");
+		this.increaseTime(); 
+		return (true); 
 	}
-	else{
-		System.out.println("you entered a product number that isn't valid"); 
-		return (null); 
+	System.out.println ("Oh no! The auction has already ended or you are the product owner or your bid wasn't high enough"); 
+	return (false); 
+}
+
+public void increaseTime(){
+	blockTilMine++; 
+}
+
+public void setTime(int num){
+	blockTilMin=num; 
+}
+
+public Person declareWinner(){
+	if (blockTilMine==0){
+		double money=getHighestAmount; 
+		Person user=getHighestBidder; 
+		user.pay(money); 
+		product.getPerson().add(money); 
 	}
 }
 
