@@ -1,0 +1,60 @@
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.8.9;
+// Liana Remeber to import and write the Person clause that will allow you to get the Perosn if you give the address 
+
+contract Auction {
+    address public owner; 
+    address [] public bidders;
+    string memory productDescription; 
+    address public NFT; 
+    uint highestBid; 
+    uint time; 
+    
+    constructor(string p,address nft, uint blockTilMine ){
+        productDescription=p;
+        owner=msg.sender; 
+        highestBid=0; 
+        NFT=nft; 
+        require (blockTilMine>=60 && blockTilMine<=10080); 
+        time=blockTilMine; 
+    }
+    
+    
+     modifier validAddress(address _addr) {
+        require(_addr != address(0), "Not valid address");
+        _;
+    }
+    
+    modifier notOwner(address add){
+        require(address!=owner, "The owner of the product can not bid on their own object"); 
+        _; 
+    }
+    
+    modifier timeRemaining(){
+        require(time>0, "Sorry the auction has eneded"); 
+        _; 
+    } 
+    
+    
+     function placeBid (address add, uint bidAmount) public returns(bool){
+        notOwner(add); 
+        timeRemaining(); 
+        if (enoughtMoney(add, bidAmount)==true && bidAmount>highestBid){
+            time++; 
+            return (true); 
+        }else{
+            return (false); 
+        }
+    }
+    
+    function enoughMoney(address add, uint bidAmount) private return (bool){
+       validAddress(add); 
+       Person per=getPerson(add); 
+       uint totalMoney=per.getMoney(); 
+       if(totalMoney>=bidAmount){
+           return (true); 
+       } else{
+           return (false); 
+       }
+    }
+    
